@@ -9,21 +9,21 @@ const props = defineProps<{
 }>();
 
 const proxyChecked = computed({
-    get() {
-        return props.checked;
-    },
+  get() {
+    return props.checked;
+  },
 
-    set(val) {
-        emit('update:checked', val);
-    },
+  set(val) {
+    emit('update:checked', val);
+  },
 });
 </script>
 
 <template>
-    <input
-        type="checkbox"
-        :value="value"
-        v-model="proxyChecked"
-        class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"
-    />
+  <input
+    v-model="proxyChecked"
+    type="checkbox"
+    :value="value"
+    class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"
+  />
 </template>

@@ -35,7 +35,10 @@ onClickOutside(menu, () => {
         <Link href="/about">What?</Link>
         <Link href="/faq">Help!</Link>
         <Link v-if="auth.user" href="/logout">Logout</Link>
-        <Link v-else href="/login">Login</Link>
+        <template v-else>
+          <Link href="/login">Login</Link>
+          <Link class="border-2 border-neutral-700 rounded-xl px-4 py-2 hover:text-neutral-50 hover:bg-neutral-700 transition-all ease-in-out" href="/register">Register</Link>
+        </template>
       </div>
       <div class="inline-block md:hidden ml-auto my-auto cursor-pointer" @click="showMenu = true">
         <div class="i-akar-icons-text-align-justified text-2xl" />
@@ -61,7 +64,7 @@ onClickOutside(menu, () => {
 }
 
 .header a {
-  @apply text-lg lg:text-xl text-center my-auto px-2 lg:px-4;
+  @apply text-lg lg:text-xl text-center my-auto mx-2 lg:mx-4;
 }
 
 .slider-menu {

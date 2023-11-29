@@ -17,10 +17,10 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('cabbage_users', function (Blueprint $table) {
+        Schema::create('user_cabbages', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('cabbage_id');
-            $table->unsignedBigInteger('user_id');
+            $table->uuid('user_id');
             $table->integer('amount');
             $table->timestamps();
             $table->foreign('cabbage_id')->references('id')->on('cabbages');

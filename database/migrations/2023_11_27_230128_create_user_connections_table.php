@@ -13,10 +13,9 @@ return new class extends Migration
     {
         // This requires two entries for each connection which violates DKNF but is more performant
         // See https://explainextended.com/2009/03/07/selecting-friends/
-        Schema::create('user_connections', function (Blueprint $table) {
-            $table->unsignedBigInteger('id')->increments();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('friend_id');
+        Schema::create('connections', function (Blueprint $table) {
+            $table->uuid('user_id');
+            $table->uuid('friend_id');
             $table->primary(['user_id', 'friend_id']);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('friend_id')->references('id')->on('users')->onDelete('cascade');
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_connections');
+        Schema::dropIfExists('connections');
     }
 };

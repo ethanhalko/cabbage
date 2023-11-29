@@ -22,7 +22,7 @@ class CabbageSeeder extends Seeder
     public function run(): void
     {
       collect($this->cabbages)->each(function ($cabbage) {
-          \App\Models\Cabbage::insert( [
+          \App\Models\Cabbage::create( [
             'type' => $cabbage,
             'created_at' => now(),
             'updated_at' => now(),

@@ -18,7 +18,6 @@ return new class extends Migration {
       $table->foreign('to')->references('id')->on('users')->onDelete('cascade');
       $table->timestamp('accepted_at')->nullable();
       $table->timestamps();
-      $table->softDeletes();
     });
   }
 

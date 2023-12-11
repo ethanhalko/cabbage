@@ -6,6 +6,7 @@ module.exports = {
     es6: true,
     commonjs: true,
     jest: true,
+    'vue/setup-compiler-macros': true,
   },
   ignorePatterns: ['api/viewBuilder.ts', './vite.config.js'],
   parser: 'vue-eslint-parser',
@@ -13,7 +14,7 @@ module.exports = {
     parser: '@typescript-eslint/parser',
   },
   plugins: [
-    '@typescript-eslint'
+    '@typescript-eslint',
   ],
   extends: [
     'eslint:recommended',
@@ -29,7 +30,7 @@ module.exports = {
     {
       files: ['tests/**/*.spec.ts'],
       rules: {
-        'no-magic-numbers': 'off'
+        'no-magic-numbers': 'off',
       },
     },
   ],
@@ -39,8 +40,8 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': [
       2,
       {
-        args: 'none'
-      }
+        args: 'none',
+      },
     ],
     'comma-dangle': [2, 'only-multiline'],
     'array-bracket-spacing': [2, 'never'],
@@ -124,8 +125,8 @@ module.exports = {
       paths: [{
         name: 'axios',
         importNames: ['default'],
-        message: 'Please use an API file or function to make requests.'
-      }]
+        message: 'Please use an API file or function to make requests.',
+      }],
     }],
     'vue/no-lone-template': 0,
     // Vue rules:

@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Cabbage;
+use App\Models\CabbageType;
+use App\Models\CabbageUser;
 use App\Models\User;
-use App\Models\UserCabbage;
+use App\Models\Cabbage;
 use App\Models\Connection;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -18,38 +19,42 @@ class UserSeeder extends Seeder
    */
   public function run(): void
   {
-    $cabbage = Cabbage::first();
     $user = User::create([
       'name' => 'admin',
+      'username' => 'cabbage_admin',
       'email' => 'admin@cabbage.directory',
       'password' => Hash::make('admin'),
     ]);
 
     $connection = User::create([
       'name' => 'connection',
-      'email' => 'connection@cabbage.directory',
+      'username' => 'friend_of_admin',
+      'email' => env('TEST_USER_EMAIL'),
       'password' => Hash::make('connection'),
-    ]);
-
-    UserCabbage::create([
-      'user_id' => $user->id,
-      'cabbage_id' => $cabbage->id,
-      'amount' => '50',
-      'created_at' => now(),
-      'updated_at' => now(),
-    ]);
-
-    UserCabbage::create([
-      'user_id' => $connection->id,
-      'cabbage_id' => $cabbage->id,
-      'amount' => '50',
-      'created_at' => now(),
-      'updated_at' => now(),
     ]);
 
     Connection::create([
       'user_id' => $user->id,
       'friend_id' => $connection->id
+    ]);
+
+    $cabbage = Cabbage::create([
+      'created_by' => $user->id,
+      'cabbage_type_id' => CabbageType::first()->id,
+      'created_at' => now(),
+      'updated_at' => now(),
+    ]);
+
+    CabbageUser::create([
+      'user_id' => $cabbage->created_by,
+      'cabbage_id' => $cabbage->id,
+      'amount' => 50
+    ]);
+
+    CabbageUser::create([
+      'user_id' => $connection->id,
+      'cabbage_id' => $cabbage->id,
+      'amount' => 25
     ]);
   }
 }

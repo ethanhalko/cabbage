@@ -11,20 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cabbages', function (Blueprint $table) {
+        Schema::create('cabbage_types', function (Blueprint $table) {
             $table->id();
             $table->string('type')->unique();
             $table->timestamps();
         });
 
-        Schema::create('user_cabbages', function (Blueprint $table) {
+        Schema::create('cabbages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('cabbage_id');
-            $table->uuid('user_id');
-            $table->integer('amount');
+            $table->unsignedBigInteger('cabbage_type_id');
+            $table->uuid('created_by');
             $table->timestamps();
-            $table->foreign('cabbage_id')->references('id')->on('cabbages');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('cabbage_type_id')->references('id')->on('cabbage_types');
+            $table->foreign('created_by')->references('id')->on('users');
         });
     }
 
@@ -33,7 +32,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('cabbage_types');
         Schema::dropIfExists('cabbages');
-        Schema::dropIfExists('cabbage_users');
     }
 };

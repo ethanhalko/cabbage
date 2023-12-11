@@ -9,11 +9,11 @@ use Illuminate\Database\Seeder;
 class CabbageSeeder extends Seeder
 {
     protected $cabbages = [
-      'Red',
-      'Green',
-      'Savoy',
-      'Napa',
-      'White'
+      'red',
+      'green',
+      'savoy',
+      'napa',
+      'white'
     ];
 
     /**
@@ -22,7 +22,7 @@ class CabbageSeeder extends Seeder
     public function run(): void
     {
       collect($this->cabbages)->each(function ($cabbage) {
-          \App\Models\Cabbage::create( [
+          \App\Models\CabbageType::create([
             'type' => $cabbage,
             'created_at' => now(),
             'updated_at' => now(),

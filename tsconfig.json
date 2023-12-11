@@ -27,7 +27,8 @@
     "paths": {
       "@/*": ["./resources/js/*"],
       "~/*": ["*"]
-    }
+    },
+    "types": ["naive-ui/volar"]
   },
   "include": ["resources/js/**/*.ts", "resources/js/**/*.d.ts", "resources/js/**/*.vue"],
   "exclude": [
@@ -37,4 +38,3 @@
     "quarantine"
   ],
   }
-  

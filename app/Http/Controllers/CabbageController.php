@@ -34,9 +34,17 @@ class CabbageController extends Controller
     {
         $user = Auth::user();
         $request->validate([
-            'user_id' => ['required', 'exists:users,id', Rule::excludeIf($request->user_id === $user->id)]
+            'cabbage_id' => 'required,exists:cabbages,id',
+            'user_id' => ['required', 'exists:users,id', Rule::excludeIf($request->user_id === $user->id)],
+            'amount' => ['required', Rule::in(25, 50, 75)]
         ]);
 
-        return $cabbage;
+        $cabbageUser = CabbageUser::create([
+            'cabbage_id' => $cabbage->id,
+            'user_id' => $request->user_id,
+            'amount' => $request->amount
+        ]);
+
+        return $cabbageUser;
     }
 }

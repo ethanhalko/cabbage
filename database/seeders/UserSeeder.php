@@ -39,14 +39,14 @@ class UserSeeder extends Seeder
     ]);
 
     $cabbage = Cabbage::create([
-      'created_by' => $user->id,
+      'owner_id' => $user->id,
       'cabbage_type_id' => CabbageType::first()->id,
       'created_at' => now(),
       'updated_at' => now(),
     ]);
 
     CabbageUser::create([
-      'user_id' => $cabbage->created_by,
+      'user_id' => $cabbage->owner_id,
       'cabbage_id' => $cabbage->id,
       'amount' => 50
     ]);

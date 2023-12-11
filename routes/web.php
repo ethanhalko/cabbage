@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/cabbage', [CabbageController::class, 'store'])->name('cabbage.store');
     Route::patch('/cabbage/{cabbage}', [CabbageController::class, 'addUser'])->name('cabbage.add-user');
+    Route::delete('/cabbage/{cabbage}', [CabbageController::class, 'destroy'])->name('cabbage.delete');
 });
 
 require __DIR__ . '/auth.php';

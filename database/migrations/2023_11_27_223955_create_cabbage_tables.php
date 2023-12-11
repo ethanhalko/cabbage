@@ -20,10 +20,10 @@ return new class extends Migration
         Schema::create('cabbages', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('cabbage_type_id');
-            $table->uuid('created_by');
+            $table->uuid('owner_id');
             $table->timestamps();
             $table->foreign('cabbage_type_id')->references('id')->on('cabbage_types');
-            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('owner_id')->references('id')->on('users');
         });
     }
 

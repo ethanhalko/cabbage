@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { Cabbage } from '@/types';
 import CabbageChart from '@/Components/CabbageChart.vue';
+import { router } from '@inertiajs/vue3';
 
-defineProps<{
+const props = defineProps<{
   cabbage: Cabbage;
 }>();
 
-defineEmits(['delete']);
+function handleDelete() {
+  router.delete(`/cabbage/${props.cabbage.id}`);
+}
 </script>
 <template>
   <div
@@ -16,7 +19,7 @@ defineEmits(['delete']);
       <div class="h-full my-auto">
         {{ cabbage.amount }}
       </div>
-      <div class="i-akar-icons-trash-can text-2xl ml-auto my-auto cursor-pointer" @click="$emit('delete')"/>
+      <div class="i-akar-icons-trash-can text-2xl ml-auto my-auto cursor-pointer" @click="handleDelete"/>
     </div>
     <div class="i-akar-icons-chevron-down mx-auto text-2xl transition-transform hover:scale-125"/>
   </div>

@@ -47,7 +47,7 @@ class User extends Authenticatable
 
   public function cabbages(): HasMany
   {
-    return $this->hasMany(Cabbage::class, 'created_by');
+    return $this->hasMany(Cabbage::class, 'owner_id');
   }
 
   public function connections()

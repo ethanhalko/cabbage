@@ -1,5 +1,4 @@
 <script lang="ts">
-import { router } from '@inertiajs/vue3';
 import layout from '@/Layouts/MainLayout.vue';
 
 export default {
@@ -7,10 +6,11 @@ export default {
 };
 </script>
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { router } from '@inertiajs/vue3';
+import { ref, onMounted, watch } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import CabbageCard from '@/Components/Cabbage.vue';
-import type { User, Cabbage, CabbageType, DropdownOption } from '@/types';
+import type { User, Cabbage, DropdownOption } from '@/types';
 import NewCabbage from '@/Components/NewCabbage.vue';
 
 const props = withDefaults(
@@ -28,17 +28,17 @@ const props = withDefaults(
 
 const cabbageList = ref<Cabbage[]>([]);
 
-onMounted(() => {
+watch(() => props.cabbages, () => {
   cabbageList.value = props.cabbages;
-});
+}, { immediate: true });
 
 function handleDelete(index: number) {
   cabbageList.value.splice(index, 1);
 }
 
 function handleSave(cabbage: Cabbage) {
-  // @ts-expect-error aksdjfla
-  router.post('/cabbage', { ...cabbage });
+  // @ts-expect-error inertia has bad typescript support
+  router.post('/cabbage', { ...cabbage }, { preserveScroll: true });
 }
 </script>
 

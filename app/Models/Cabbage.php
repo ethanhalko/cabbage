@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Http\Requests\CabbageRequest;
+use App\Http\Requests\CabbageUserRequest;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class Cabbage extends Model
@@ -18,7 +21,7 @@ class Cabbage extends Model
         'user_id',
         'cabbage_id',
         'cabbage_type_id',
-        'created_by'
+        'owner_id'
     ];
 
     public function owner(): HasOne
@@ -50,5 +53,14 @@ class Cabbage extends Model
 
             return $data;
         });
+    }
+
+    public function createCabbageUser($request)
+    {
+        return CabbageUser::create([
+            'cabbage_id' => $this->id,
+            'user_id' => $request['user_id'],
+            'amount' => $request['amount']
+        ]);
     }
 }

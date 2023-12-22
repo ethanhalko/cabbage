@@ -6,7 +6,7 @@ export default {
 };
 </script>
 <script setup lang="ts">
-import { router } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
 import { ref, watch } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import CabbageCard from '@/Components/Cabbage.vue';
@@ -57,8 +57,9 @@ function handleSave(cabbage: Cabbage) {
         <NewCabbage :cabbage-types="cabbageTypes" @save="handleSave"/>
       </div>
     </div>
-    <div v-else class="m-auto text-4xl text-center">
-      Sign up or sign in, cabbage head
+    <div v-else class="mt-4 text-4xl text-center flex flex-col w-48 mx-auto h-full justify-center">
+      <Link :href="route('login')" class="btn bg-emerald-500 border-2">Login</Link>
+      <Link href="/register" class="btn bg-neutral-600 text-white border-2">Register</Link>
     </div>
   </div>
 </template>

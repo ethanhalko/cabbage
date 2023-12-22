@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Cabbage;
 use App\Models\CabbageType;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;

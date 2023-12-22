@@ -24,27 +24,13 @@ onClickOutside(menu, () => {
 });
 </script>
 <template>
-  <div class="min-h-screen bg-green-400 bg-opacity-25 h-full">
-    <div class="header h-24 p-4 grid grid-cols-3 z-0 w-full bg-green-300 shadow-sm">
-      <Link class="flex justify-center items-center col-start-2" :href="route('home')">
+  <div class="h-screen">
+    <div class="header flex h-16 z-0 w-full shadow-sm">
+      <Link class="flex m-auto" :href="route('home')">
         <h1 class="hidden-sm">Cabbage</h1>
-        <Cabbage class="w-16 shrink-0"/>
+        <Cabbage class="w-12 h-10 my-auto shrink-0"/>
         <h1 class="hidden-sm">Directory</h1>
       </Link>
-      <div class="hidden xl:inline-block links ml-auto my-auto text-center">
-        <Link :href="route('about')">What the?</Link>
-        <Link v-if="auth.user" :href="route('logout')" method="post" as="button">Logout</Link>
-        <template v-else>
-          <Link :href="route('login')">Login</Link>
-          <Link
-            class="border-2 border-neutral-700 rounded-xl px-4 py-2 hover:text-neutral-50 hover:bg-neutral-700 transition-all ease-in-out"
-            href="/register">Register
-          </Link>
-        </template>
-      </div>
-      <div class="inline-block xl:hidden ml-auto my-auto cursor-pointer" @click="showMenu = true">
-        <div class="i-akar-icons-text-align-justified text-2xl"/>
-      </div>
     </div>
     <div v-if="showMenu" ref="menu" class="w-full slider-menu absolute top-0 shadow-sm">
       <div class="i-akar-icons-x-small ml-auto text-2xl absolute top-4 right-4" @click="showMenu = false"/>
@@ -58,16 +44,27 @@ onClickOutside(menu, () => {
         </li>
       </ul>
     </div>
-    <slot/>
+    <div class="flex h-full">
+      <section class="sidebar-wrapper w-80 shadow-md bg-neutral-50 h-full">
+        <slot name="sidebar-links">
+          <div class="flex flex-col h-full text-xl">
+            <Link>Your Cabbages</Link>
+            <Link>Friend's Cabbages</Link>
+            <Link>Your Friends</Link>
+            <Link :href="route('about')">What the?</Link>
+            <Link v-if="auth.user" :href="route('logout')" method="post" as="button" class="text-left">Logout</Link>
+          </div>
+        </slot>
+      </section>
+      <section class="main-wrapper w-full h-full">
+        <slot/>
+      </section>
+    </div>
   </div>
 </template>
 <style scoped>
 .header h1 {
-  @apply text-2xl lg:text-5xl font-bold;
-}
-
-.header a, .header button {
-  @apply text-lg xl:text-xl text-center my-auto mx-2 xl:mx-4;
+  @apply text-2xl lg:text-4xl;
 }
 
 .slider-menu {
@@ -80,5 +77,13 @@ onClickOutside(menu, () => {
 
 .slider-menu li {
   @apply hover:bg-neutral-100 p-4;
+}
+
+.sidebar-wrapper a, .sidebar-wrapper button {
+  @apply py-2 px-4 hover:bg-neutral-200;
+}
+
+.sidebar-wrapper a:first-child, .sidebar-wrapper button:first-child {
+  @apply mt-4;
 }
 </style>

@@ -4,22 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CabbageRequest;
 use App\Models\Cabbage;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class CabbageController extends Controller
 {
-    public function store(CabbageRequest $request)
+    public function store(CabbageRequest $request): RedirectResponse
     {
-        $user = Auth::user();
-        $cabbage = Cabbage::create(['cabbage_type_id' => $request->type, 'owner_id' => Auth::user()->id]);
+        $cabbage = Cabbage::create(['cabbage_type_id' => $request->type, 'owner_id' => $request->user()->id]);
         $cabbage->createCabbageUser(collect(['user_id' => $cabbage->owner_id, 'amount' => $request->amount]));
-        $cabbages = $user?->cabbages;
+
         return redirect('/');
     }
 
-    public function destroy(Cabbage $cabbage)
+    public function destroy(Cabbage $cabbage): RedirectResponse
     {
         $cabbage->delete();
 

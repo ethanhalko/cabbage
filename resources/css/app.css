@@ -4,5 +4,5 @@
 
 
 .hidden-sm {
-  @apply hidden sm:block;
+    @apply hidden sm:block;
 }

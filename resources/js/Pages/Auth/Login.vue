@@ -1,3 +1,10 @@
+<script lang="ts">
+import layout from '@/Layouts/MainLayout.vue';
+
+export default {
+  layout,
+};
+</script>
 <script setup lang="ts">
 import Checkbox from '@/Components/Checkbox.vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
@@ -29,10 +36,9 @@ const submit = () => {
 </script>
 
 <template>
-  <MainLayout>
+  <div class="h-full flex flex-col">
     <Head title="Log in"/>
-    <div class="px-4 lg:w-1/2 mx-auto mt-48">
-
+    <div class="mx-auto lg:w-1/3 mt-24">
       <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
         {{ status }}
       </div>
@@ -91,5 +97,5 @@ const submit = () => {
         </div>
       </form>
     </div>
-  </MainLayout>
+  </div>
 </template>

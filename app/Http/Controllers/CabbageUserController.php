@@ -10,6 +10,8 @@ class CabbageUserController extends Controller
 {
     public function store(CabbageUserRequest $request, Cabbage $cabbage)
     {
-        return $cabbage->createCabbageUser($request->validated());
+        $cabbage->createCabbageUser($request->validated());
+
+        return redirect('/');
     }
 }

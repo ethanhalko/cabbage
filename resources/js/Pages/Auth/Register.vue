@@ -1,3 +1,10 @@
+<script lang="ts">
+import layout from '@/Layouts/MainLayout.vue';
+
+export default {
+  layout,
+};
+</script>
 <script setup lang="ts">
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import InputError from '@/Components/InputError.vue';
@@ -24,12 +31,12 @@ const submit = () => {
 </script>
 
 <template>
-  <GuestLayout>
-    <Head title="Register" />
+  <div>
+    <Head title="Register"/>
 
-    <form @submit.prevent="submit">
-      <div>
-        <InputLabel for="name" value="Name" />
+    <form class="flex flex-col lg:w-1/3 mx-auto mt-20" @submit.prevent="submit">
+      <div class="mt-4">
+        <InputLabel for="name" value="Name"/>
 
         <TextInput
           id="name"
@@ -41,11 +48,11 @@ const submit = () => {
           autocomplete="name"
         />
 
-        <InputError class="mt-2" :message="form.errors.name" />
+        <InputError class="mt-2" :message="form.errors.name"/>
       </div>
 
-      <div>
-        <InputLabel for="username" value="User Name" />
+      <div class="mt-4">
+        <InputLabel for="username" value="User Name"/>
 
         <TextInput
           id="name"
@@ -57,11 +64,11 @@ const submit = () => {
           autocomplete="name"
         />
 
-        <InputError class="mt-2" :message="form.errors.username" />
+        <InputError class="mt-2" :message="form.errors.username"/>
       </div>
 
       <div class="mt-4">
-        <InputLabel for="email" value="Email" />
+        <InputLabel for="email" value="Email"/>
 
         <TextInput
           id="email"
@@ -72,11 +79,11 @@ const submit = () => {
           autocomplete="username"
         />
 
-        <InputError class="mt-2" :message="form.errors.email" />
+        <InputError class="mt-2" :message="form.errors.email"/>
       </div>
 
       <div class="mt-4">
-        <InputLabel for="password" value="Password" />
+        <InputLabel for="password" value="Password"/>
 
         <TextInput
           id="password"
@@ -87,11 +94,11 @@ const submit = () => {
           autocomplete="new-password"
         />
 
-        <InputError class="mt-2" :message="form.errors.password" />
+        <InputError class="mt-2" :message="form.errors.password"/>
       </div>
 
       <div class="mt-4">
-        <InputLabel for="password_confirmation" value="Confirm Password" />
+        <InputLabel for="password_confirmation" value="Confirm Password"/>
 
         <TextInput
           id="password_confirmation"
@@ -102,7 +109,7 @@ const submit = () => {
           autocomplete="new-password"
         />
 
-        <InputError class="mt-2" :message="form.errors.password_confirmation" />
+        <InputError class="mt-2" :message="form.errors.password_confirmation"/>
       </div>
 
       <div class="flex items-center justify-end mt-4">
@@ -118,5 +125,5 @@ const submit = () => {
         </PrimaryButton>
       </div>
     </form>
-  </GuestLayout>
+  </div>
 </template>

@@ -6,8 +6,10 @@ export default {
 };
 </script>
 <template>
-  <div class="about-wrapper">
-    <h1 class="text-3xl py-4">About</h1>
-    <p class="text-xl">This is a simple app to track your cabbages.</p>
+  <div class="h-full flex">
+    <div class="about-wrapper m-auto">
+      <h1 class="text-3xl py-4">About</h1>
+      <p class="text-xl">This is a simple app to track your cabbages.</p>
+    </div>
   </div>
 </template>
